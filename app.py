@@ -6,10 +6,10 @@ import os
 
 app = Flask(__name__)
 
-DB_Host = os.environ.get('DB_Host') or "localhost"
+DB_Host = os.environ.get('DB_Host') or "mysql"
 DB_Database = os.environ.get('DB_Database') or "mysql"
-DB_User = os.environ.get('DB_User') or "root"
-DB_Password = os.environ.get('DB_Password') or "paswrd"
+DB_User = os.environ.get('DB_User')
+DB_Password = os.environ.get('DB_Password')
 group_name = os.environ.get('GROUP_NAME')
 
 @app.route("/")
