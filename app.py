@@ -10,6 +10,7 @@ DB_Host = os.environ.get('DB_Host') or "localhost"
 DB_Database = os.environ.get('DB_Database') or "mysql"
 DB_User = os.environ.get('DB_User') or "root"
 DB_Password = os.environ.get('DB_Password') or "paswrd"
+group_name = os.environ.get('GROUP_NAME')
 
 @app.route("/")
 def main():
@@ -23,7 +24,7 @@ def main():
         color = '#ff3f3f'
         err_message = str(e)
 
-    return render_template('hello.html', debug="Environment Variables: DB_Host=" + (os.environ.get('DB_Host') or "Not Set") + "; DB_Database=" + (os.environ.get('DB_Database')  or "Not Set") + "; DB_User=" + (os.environ.get('DB_User')  or "Not Set") + "; DB_Password=" + (os.environ.get('DB_Password')  or "Not Set") + "; " + err_message, db_connect_result=db_connect_result, name=socket.gethostname(), color=color)
+    return render_template('hello.html', debug="Environment Variables: DB_Host=" + (os.environ.get('DB_Host') or "Not Set") + "; DB_Database=" + (os.environ.get('DB_Database')  or "Not Set") + "; DB_User=" + (os.environ.get('DB_User')  or "Not Set") + "; DB_Password=" + (os.environ.get('DB_Password')  or "Not Set") + "; " + err_message, db_connect_result=db_connect_result, name=socket.gethostname(), color=color, group_name=group_name)
 
 @app.route("/debug")
 def debug():
