@@ -7,14 +7,13 @@
     vertical-align:  middle;">
 
   {% if db_connect_result %}
-    <img src="{{ url_for('static', filename='img/success.jpg') }}">
-    <h3> Successfully connected to the MySQL database.</h3>
-    <h2> S3 location is : " {{ success_url }} " </h2>
+  <img src="{{ url_for('static', filename='img/success.jpg') }}">
+  <h3> Successfully connected to the MySQL database.</h3>
   {% else %}
-    <img src="{{ url_for('static', filename='img/failed.png') }}">
-    <h3> Failed connecting to the MySQL database. </h3>
-    <h2> S3 location is : " {{ fail_url }} " </h2>
+  <img src="{{ url_for('static', filename='img/failed.png') }}">
+  <h3> Failed connecting to the MySQL database. </h3>
   {% endif %}
+  <h2> S3 image location is : " {{ image_url }} " </h2>
 
   {% if debug %}
     <h2> {{ debug }} </h2>
