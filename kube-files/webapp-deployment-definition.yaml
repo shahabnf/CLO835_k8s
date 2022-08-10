@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: simple-webapp-mysql
-        image: 228064520835.dkr.ecr.us-east-1.amazonaws.com/simple-webapp-mysql:1.2
+        image: 228064520835.dkr.ecr.us-east-1.amazonaws.com/simple-webapp-mysql:v1.2
         ports:
         - containerPort: 81
         env:
