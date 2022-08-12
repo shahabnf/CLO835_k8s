@@ -16,12 +16,7 @@ DB_Password = os.environ.get('DB_Password')
 group_name = os.environ.get('GROUP_NAME')
 if os.path.exists('/clo835/config/image_url'):
     s3_url_file = open('/clo835/config/image_url') 
-    json_data = json.load(s3_url_file) #convert to json
-    #download the s3 images locally using aws cli command
-    for url in json_data:
-        cmd = "aws s3 cp " + json_data[url] + f" static/img/{url}.jpg"
-        print("Command :", cmd)
-        process = subprocess.Popen(cmd, shell=True, stdout = subprocess.PIPE)
+    json_data = json.load(s3_url_file)
 else: 
     json_data = {}
 
@@ -41,6 +36,9 @@ def main():
         err_message = str(e)
         image_url = json_data["failed_url"] if json_data else "Not Available"
     
+    cmd = "aws s3 cp " + image_url + f" static/img/image.jpg"
+    process = subprocess.run(cmd, shell=True)
+
     return render_template('hello.html', debug="Environment Variables: DB_Host=" + (os.environ.get('DB_Host') or "Not Set") + "; DB_Database=" + (os.environ.get('DB_Database')  or "Not Set") + "; DB_User=" + (os.environ.get('DB_User')  or "Not Set") + "; DB_Password=" + (os.environ.get('DB_Password')  or "Not Set") + "; " + err_message, db_connect_result=db_connect_result, name=socket.gethostname(), color=color, group_name=group_name, image_url=image_url)
 
 @app.route("/debug")
